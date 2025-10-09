@@ -15,8 +15,11 @@ task("deploy-fundme").setAction(async(taskArgs,hre) => {
     if(hre.network.config.chainId == 11155111 && process.env.ETHERSCAN_API_KEY)
     {
         console.log("Waiting for 5 confirmations");
-        await fundMe.deploymentTransaction().wait(5);
-        await verifyFundMe(fundMe.target,25);
+        await hre.run("verify:verify", {
+            address: fundMe.address,
+            constructorArguments:[7200],
+        });
+        console.log("contract has been verified successfully");
     }
     else{
         console.log("verification is skiped .....")

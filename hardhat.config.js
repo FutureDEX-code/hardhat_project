@@ -38,6 +38,9 @@ module.exports = {
     },
     secondAccount:{
       default: 1
+    },
+    thirdAccount:{
+      default: 2
     }
   },
   remappings: [

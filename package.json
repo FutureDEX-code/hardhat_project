@@ -13,9 +13,11 @@
     "@chainlink/env-enc": "^1.0.5",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-verify": "^2.1.1",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.4.2",
     "@openzeppelin/contracts": "^5.4.0",
     "dotenv": "^17.2.2",
-    "hardhat": "^2.22.2",
+    "ethers": "^6.15.0",
+    "hardhat": "^2.26.3",
     "hardhat-deploy": "^1.0.4"
   }
 }
