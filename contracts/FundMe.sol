@@ -20,7 +20,7 @@ contract FundMe is ReentrancyGuard, Pausable
 
     uint256 constant TARGET = 2 * 10 ** 18;
 
-    AggregatorV3Interface internal immutable dataFeed;
+    AggregatorV3Interface public immutable dataFeed;
 
     address public owner;
 
@@ -43,10 +43,10 @@ contract FundMe is ReentrancyGuard, Pausable
 
     bool public getFundSuccess = false;
 
-    constructor(uint256 _lockblocks)
+    constructor(uint256 _lockblocks, address _dataFeed)
     {
         //Sepolia testnet
-        dataFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        dataFeed = AggregatorV3Interface(_dataFeed);
         owner = msg.sender;
         deploymentBlockNumber = block.number; // 记录部署时的区块编号
         LOCK_BLOCKS = _lockblocks;
