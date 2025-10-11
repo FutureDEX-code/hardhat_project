@@ -46,4 +46,10 @@ module.exports = {
   remappings: [
     "@chainlink/contracts/=node_modules/@chainlink/contracts/",
   ],
+  gasReporter: {
+    enabled: true,
+    currency: "USD",
+    outputFile: "gas-report.txt",
+    noColors: true,
+  }
 };

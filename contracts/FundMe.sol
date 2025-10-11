@@ -18,7 +18,7 @@ contract FundMe is ReentrancyGuard, Pausable
 
     uint256 constant MINIMUM_VALUE = 1 * 10 ** 18; //1 USD
 
-    uint256 constant TARGET = 2 * 10 ** 18;
+    uint256 constant TARGET = 20 * 10 ** 18;
 
     AggregatorV3Interface public immutable dataFeed;
 
@@ -97,8 +97,9 @@ contract FundMe is ReentrancyGuard, Pausable
     function fundsWithdrawn() external onlyOwner nonReentrant whenNotPaused windowsClosed
     {
         //Check
-        require(convertEthToUsd(address(this).balance) >= TARGET,"TARGET is not reached");
         require(!getFundSuccess,"Funds have already been withdrawn");
+        require(convertEthToUsd(address(this).balance) >= TARGET,"TARGET is not reached");
+        
 
         //Effects
         fundersAmountList[msg.sender] = 0;
@@ -132,11 +133,12 @@ contract FundMe is ReentrancyGuard, Pausable
         require(convertEthToUsd(address(this).balance) < TARGET,"TARGET is reached");
         require(fundersAmountList[msg.sender] != 0,"you have not fund");
 
+        uint256 balance = fundersAmountList[msg.sender];
         fundersAmountList[msg.sender] = 0;
         emit FundRefunded(msg.sender, fundersAmountList[msg.sender]);
 
         bool success;
-        (success, ) = payable (msg.sender).call{value: fundersAmountList[msg.sender]}("");
+        (success, ) = payable (msg.sender).call{value: balance}("");
         require(success,"transfer tx failed");
     }
 
