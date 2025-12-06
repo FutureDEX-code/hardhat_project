@@ -11,12 +11,12 @@ const SEPOLIA_URL = process.env.SEPOLIA_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const PRIVATE_KEY_2 = process.env.PRIVATE_KEY_2
-const PRIVATE_KEY_3 = process.env.PRIVATE_KEY_3
+const PRIVATE_KEY_3 = process.env.PRIVATE_KEY_3 
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  defaultNetwork: "hardhat",
-  solidity: "0.8.20",
+  defaultNetwork: "hardhat", 
+  solidity: "0.8.24",
   networks:{
     sepolia:{
       url: SEPOLIA_URL,
@@ -43,9 +43,6 @@ module.exports = {
       default: 2
     }
   },
-  remappings: [
-    "@chainlink/contracts/=node_modules/@chainlink/contracts/",
-  ],
   gasReporter: {
     enabled: true,
     currency: "USD",

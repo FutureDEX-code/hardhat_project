@@ -18,7 +18,7 @@ contract FundMe is ReentrancyGuard, Pausable
 
     uint256 constant MINIMUM_VALUE = 1 * 10 ** 18; //1 USD
 
-    uint256 constant TARGET = 20 * 10 ** 18;
+    uint256 constant TARGET = 2 * 10 ** 18;
 
     AggregatorV3Interface public immutable dataFeed;
 
@@ -135,7 +135,7 @@ contract FundMe is ReentrancyGuard, Pausable
 
         uint256 balance = fundersAmountList[msg.sender];
         fundersAmountList[msg.sender] = 0;
-        emit FundRefunded(msg.sender, fundersAmountList[msg.sender]);
+        emit FundRefunded(msg.sender, balance);
 
         bool success;
         (success, ) = payable (msg.sender).call{value: balance}("");
